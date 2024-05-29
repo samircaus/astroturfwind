@@ -1,13 +1,23 @@
 ---
-import { GoogleAnalytics } from '@astrolib/analytics';
 import { ANALYTICS } from 'astrowind:config';
 ---
 
 {
-  ANALYTICS?.vendors?.googleAnalytics?.id ? (
-    <GoogleAnalytics
-      id={String(ANALYTICS.vendors.googleAnalytics.id)}
-      partytown={ANALYTICS?.vendors?.googleAnalytics?.partytown}
-    />
-  ) : null
+    <script type="text/javascript">
+      window.targetGlobalSettings = {
+        cookieDomain: "astroturfwind.pages.dev",
+        secureOnly: true,
+        overrideMboxEdgeServer: true,
+        serverState: {}
+      };
+  </script>
+  <script>
+      function targetPageParams() {
+        return {
+          "at_property": "f827c39d-c3d5-787c-b1b5-f4c2aa22a701"
+        };
+      }
+  </script>
+  <script type="text/javascript" is:inline src="/scripts/at.js"></script>
+  <script type="text/javascript" is:inline src="/scripts/custom.js"></script>
 }
