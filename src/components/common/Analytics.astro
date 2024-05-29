@@ -3,9 +3,10 @@ import { ANALYTICS } from 'astrowind:config';
 ---
 
 {
-    <script type="text/javascript">
+    <script type="text/javascript" is:inline>
       window.targetGlobalSettings = {
-        cookieDomain: "astroturfwind.pages.dev",
+        cookieDomain: window.location.hostname,
+        secureOnly: true,
         overrideMboxEdgeServer: true,
         serverState: {}
       };
