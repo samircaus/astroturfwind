@@ -1,8 +1,9 @@
 
-console.log("Custom script");
-
-if (adobe) {
-
+console.log("Custom Marketing ops scripts");
+const marketingOpsOnPageShow = (data) => {
+  
+  if (adobe) {
+    console.log(JSON.stringify(data));
     adobe.target.getOffers({
         request: {
           "prefetch": {
@@ -42,4 +43,6 @@ if (adobe) {
         .then(() => console.log("Success getOffers applyOffers"))
         .catch(error => console.log("Error", error));
 
+  }
 }
+ 

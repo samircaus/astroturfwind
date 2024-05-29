@@ -149,6 +149,8 @@ import { UI } from 'astrowind:config';
     document.getElementById('header')?.classList.remove('h-screen');
     document.getElementById('header')?.classList.remove('expanded');
     document.querySelector('#header nav')?.classList.add('hidden');
+
+    marketingOpsOnPageShow()
   };
 
   window.onload = onLoad;
