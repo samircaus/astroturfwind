@@ -69,7 +69,12 @@ const {
                         <Fragment set:html={callToAction} />
                       ) : (
                         callToAction &&
-                        callToAction.href && <Button {...(hasRibbon ? { variant: 'primary' } : {})} {...callToAction} />
+                        callToAction.href && (
+                          <Button
+                            {...(hasRibbon ? { variant: 'primary' } : {}, { datalayer: price })}
+                            {...callToAction}
+                          />
+                        )
                       )}
                     </div>
                   )}

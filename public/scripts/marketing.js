@@ -1,6 +1,89 @@
 
 console.log("Custom Marketing ops scripts");
+
+
+const triggerMarketingEvents = () => {
+  console.log("triggerMarketingEvents")
+}
+
+function uuidv4() {
+  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
+    (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
+  );
+}
+
+
+const triggerPurchaseEvents = (price) => {
+  console.log("triggerPurchaseEvents : " + price)
+  const purchaseId = uuidv4()
+  alloy("sendEvent", {
+    "xdm": {
+      "commerce": {
+        "order": {
+          "purchaseID": purchaseId,
+          "purchaseOrderNumber": purchaseId + "-order",
+          "currencyCode": "EUR",
+          "priceTotal": price
+        },
+       
+        "purchases": {
+          "value": 1
+        }
+     }
+   
+    },
+    "data": {
+      "__adobe": {
+        "target": {
+          "track": {
+            "scopes": [ "orderConfirmation"],
+            "type": ""
+          },
+       
+          "orderId": purchaseId,
+          "orderTotal": price,
+          "productPurchasedId": purchaseId + "-product"
+   
+        }
+      }
+    }
+  }
+  )
+}
+
+
+const populatePageData = () => {
+  // simulate params based on the current website...
+
+  const title = document.title;
+  let params = { "pageTitle": title };
+  if (title.indexOf('css') > 0) {
+    params = {
+      "user.categoryId": "shoes",
+      "profile.age": 19
+    }
+  } else if (title.indexOf('pricing') > 0) {
+    params = {
+      "user.categoryId": "websites",
+      "profile.age": 27
+    }
+  } else if (title.indexOf('websites') > 0) {
+    params = {
+      "user.categoryId": "websites",
+      "profile.age": 27
+    }
+  } else if (title.indexOf('websites') > 0) {
+    params = {
+      "user.categoryId": "websites",
+      "profile.age": 27
+    }
+  }
+  return params;
+}
+
 const marketingOpsOnPageShow = (data) => {
+
+  adobeDataLayer.push(populatePageData())
 
   if (alloy) {
     console.log("using alloy");
@@ -9,22 +92,10 @@ const marketingOpsOnPageShow = (data) => {
     console.log("using at.js");
 
     let params = {}
-    const title = document.title;
-    if (title.indexOf('css') > 0) {
-      params = {
-        "user.categoryId": "shoes",
-        "profile.age": 27
-      }
-    } else if (title.indexOf('websites') > 0) {
-      params = {
-        "user.categoryId": "websites",
-        "profile.age": 27
-      }
-    }
 
     adobe.target.getOffer({
       "mbox": "target-global-mbox",
-      "params": params,
+      "params": adobeDataLayer.getState(),
       "success": function (offer) {
         adobe.target.applyOffer({
           "mbox": "target-global-mbox",
@@ -36,5 +107,4 @@ const marketingOpsOnPageShow = (data) => {
       }
     });
   }
-
 }

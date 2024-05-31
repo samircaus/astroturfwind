@@ -242,3 +242,16 @@ const metadata = {
     ]}
   />
 </Layout>
+
+<script>
+  // Find our component DOM on the page.
+  const buttons = document.querySelectorAll('.btn-secondary, .btn-primary');
+  buttons.forEach((b) => {
+    b.removeAttribute('href');
+    b.onclick = () => {
+      triggerPurchaseEvents(b.getAttribute('datalayer'));
+    };
+  });
+
+  // Add event listeners to fire confetti when a button is clicked.
+</script>
