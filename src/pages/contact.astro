@@ -3,6 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import HeroText from '~/components/widgets/HeroText.astro';
 import ContactUs from '~/components/widgets/Contact.astro';
 import Features2 from '~/components/widgets/Features2.astro';
+import MultiStep from '~/components/form/MultiStep.svelte';
 
 const metadata = {
   title: 'Contact',
@@ -14,6 +15,7 @@ const metadata = {
 
   <HeroText tagline="Contact" title="Let's Connect!" />
 
+  <MultiStep client:load />
   <ContactUs
     id="form"
     title="Drop us a message today!"

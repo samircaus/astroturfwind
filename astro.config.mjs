@@ -11,6 +11,8 @@ import icon from 'astro-icon';
 import compress from '@playform/compress';
 
 import astrowind from './vendor/integration';
+import svelte from '@astrojs/svelte';
+
 
 import {
   readingTimeRemarkPlugin,
@@ -33,6 +35,7 @@ export default defineConfig({
     }),
     sitemap(),
     mdx(),
+    svelte(),
     icon({
       include: {
         tabler: ['*'],
