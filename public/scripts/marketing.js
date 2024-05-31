@@ -2,9 +2,11 @@
 console.log("Custom Marketing ops scripts");
 const marketingOpsOnPageShow = (data) => {
 
+  if (alloy) {
+    console.log("using alloy");
 
-  if (adobe) {
-    console.log(JSON.stringify(data));
+  } else if (adobe) {
+    console.log("using at.js");
 
     let params = {}
     const title = document.title;
@@ -24,10 +26,10 @@ const marketingOpsOnPageShow = (data) => {
       "mbox": "target-global-mbox",
       "params": params,
       "success": function (offer) {
-        adobe.target.applyOffer( {
-           "mbox": "target-global-mbox",
-           "offer": offer
-        } );
+        adobe.target.applyOffer({
+          "mbox": "target-global-mbox",
+          "offer": offer
+        });
       },
       "error": function (status, error) {
         console.log('Error', status, error);
