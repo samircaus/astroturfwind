@@ -18,6 +18,9 @@ const triggerPurchaseEvents = (price) => {
   const purchaseId = uuidv4()
   alloy("sendEvent", {
     "xdm": {
+      "decisionScopes": [
+        "orderConfirmation"
+      ],
       "commerce": {
         "order": {
           "purchaseID": purchaseId,
@@ -25,25 +28,25 @@ const triggerPurchaseEvents = (price) => {
           "currencyCode": "EUR",
           "priceTotal": price
         },
-       
+
         "purchases": {
           "value": 1
         }
-     }
-   
+      }
+
     },
     "data": {
       "__adobe": {
         "target": {
           "track": {
-            "scopes": [ "orderConfirmation"],
+            "scopes": ["orderConfirmation"],
             "type": ""
           },
-       
+
           "orderId": purchaseId,
           "orderTotal": price,
           "productPurchasedId": purchaseId + "-product"
-   
+
         }
       }
     }
