@@ -16,24 +16,35 @@ function uuidv4() {
 const triggerPurchaseEvents = (price) => {
   console.log("triggerPurchaseEvents : " + price)
   const purchaseId = uuidv4()
+  const priceRandom =  Math.floor(Math.random() * (10000 - 1000) + 100) / 100
+
   alloy("sendEvent", {
     "xdm": {
+      "eventType": "commerce.purchases",
+      "_experience": {
+        "decisioning": {
+          "propositions": [{
+            "scope": "orderConfirmation"
+          }],
+          "propositionEventType": {
+            "interact": 1
+          }
+        }
+      },
       "decisionScopes": [
         "orderConfirmation"
       ],
       "commerce": {
         "order": {
           "purchaseID": purchaseId,
-          "purchaseOrderNumber": purchaseId + "-order",
+          "purchaseOrderNumber": "VAU" + (new Date().getTime().toString()),
           "currencyCode": "EUR",
-          "priceTotal": price
+          "priceTotal": priceRandom
         },
-
         "purchases": {
           "value": 1
         }
       }
-
     },
     "data": {
       "__adobe": {
@@ -42,9 +53,8 @@ const triggerPurchaseEvents = (price) => {
             "scopes": ["orderConfirmation"],
             "type": ""
           },
-
           "orderId": purchaseId,
-          "orderTotal": price,
+          "orderTotal": priceRandom,
           "productPurchasedId": purchaseId + "-product"
 
         }
