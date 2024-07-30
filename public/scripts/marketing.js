@@ -27,7 +27,7 @@ const triggerPurchaseEvents = (price) => {
             "scope": "orderConfirmation"
           }],
           "propositionEventType": {
-            "interact": 1
+            "display": 1
           }
         }
       },
