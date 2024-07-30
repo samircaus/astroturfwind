@@ -20,7 +20,6 @@ const triggerPurchaseEvents = (price) => {
 
   alloy("sendEvent", {
     "xdm": {
-      "eventType": "commerce.purchases",
       "_experience": {
         "decisioning": {
           "propositions": [{
@@ -31,6 +30,7 @@ const triggerPurchaseEvents = (price) => {
           }
         }
       },
+      "eventType": "decisioning.propositionDisplay",
       "decisionScopes": [
         "orderConfirmation"
       ],
