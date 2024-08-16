@@ -96,7 +96,7 @@ const marketingOpsOnPageShow = (data) => {
   adobeDataLayer.push(populatePageData())
 
   if (alloy) {
-    console.log("using alloy");
+    // console.log("using alloy");
 
   } else if (adobe) {
     console.log("using at.js");

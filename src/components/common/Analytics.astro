@@ -16,23 +16,8 @@ import { ANALYTICS } from 'astrowind:config';
           "at_property": "f827c39d-c3d5-787c-b1b5-f4c2aa22a701"
         };
       }
-      console.log("loaded once")
   </script>
-  <script type="text/javascript">
-    const loadTags = ()=>{
-      console.log("loading on each page change")
-      // var script = document.createElement('script');
-      // script.type = 'text/javascript';
-      // script.url = 'https://assets.adobedtm.com/f169d022e5ee/ee90ad6c00ad/launch-a5df803c2f5a-development.min.js';
-      // script.async = true
-      // document.head.appendChild(script);
-    }
-      document.addEventListener('astro:after-swap',
-      () => loadTags())
-      loadTags()
-
-  </script>
-  <script is:inline type="text/javascript" src="https://assets.adobedtm.com/f169d022e5ee/ee90ad6c00ad/launch-a5df803c2f5a-development.min.js" async></script>
+  <script type="text/javascript" src="https://assets.adobedtm.com/f169d022e5ee/ee90ad6c00ad/launch-a5df803c2f5a-development.min.js" async></script>
   <script is:inline type="text/javascript" src="/scripts/marketing.js"></script>
 }
 
