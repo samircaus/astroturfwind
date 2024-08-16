@@ -1,10 +1,5 @@
 
-console.log("Custom Marketing ops scripts");
 
-
-const triggerMarketingEvents = () => {
-  console.log("triggerMarketingEvents")
-}
 
 function uuidv4() {
   return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
@@ -96,6 +91,8 @@ const populatePageData = () => {
 
 const marketingOpsOnPageShow = (data) => {
 
+  window.adobeDataLayer = window.adobeDataLayer || [];
+  
   adobeDataLayer.push(populatePageData())
 
   if (alloy) {
