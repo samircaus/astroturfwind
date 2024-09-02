@@ -17,6 +17,16 @@ import { ANALYTICS } from 'astrowind:config';
         };
       }
   </script>
+  <script is:inline type="text/javascript"  >
+  !function(e,a,n,t){
+    if (a) return;
+    var i=e.head;if(i){
+    var o=e.createElement("style");
+    o.id="alloy-prehiding",o.innerText=n,i.appendChild(o),
+    setTimeout(function(){o.parentNode&&o.parentNode.removeChild(o)},t)}}
+    (document, document.location.href.indexOf("adobe_authoring_enabled") !== -1, "body { opacity: 0 !important }", 3000);
+  </script>
+
   <script type="text/javascript" src="https://assets.adobedtm.com/f169d022e5ee/ee90ad6c00ad/launch-a5df803c2f5a-development.min.js" async></script>
   <script is:inline type="text/javascript" src="/scripts/marketing.js"></script>
 }
